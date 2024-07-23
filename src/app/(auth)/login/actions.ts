@@ -1,8 +1,8 @@
 "use server";
 
-import { verify } from "@node-rs/argon2";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { verify } from "@node-rs/argon2";
 import { isRedirectError } from "next/dist/client/components/redirect";
 
 import { lucia } from "@/auth";

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
 
-import localFont from "next/font/local";
 import { Toaster } from "@/components/ui/toaster";
+import localFont from "next/font/local";
+import { fileRouter } from "./api/uploadthing/core";
 import ReactQueryProvider from "./ReactQueryProvider";
-
 import "./globals.css";
 
 const geistSans = localFont({
@@ -32,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <NextSSRPlugin routerConfig={extractRouterConfig(fileRouter)} />
         <ReactQueryProvider>
           <ThemeProvider
             attribute="class"
